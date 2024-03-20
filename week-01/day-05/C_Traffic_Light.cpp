@@ -27,26 +27,27 @@ int main() {
         string s;
         cin >> s;
 
-        string str = s;
+        s += s;
 
-        vector<int> v;
+        set<int> green_pos;
 
-        for (int i = 1; i <= s.size(); i++) {
+        for (int i = 0; i < 2 * n; i++) {
             if (s[i] == 'g') {
-                v.push_back(i);
+                green_pos.insert(i + 1);
             }
         }
 
-        int mx = S_INF;
+        int ans = S_INF;
 
-        for (int i = 0; i < v.size(); i++) {
+        for (int i = 0; i < n; i++) {
             if (s[i] == r) {
-                int ans = lower_bound(v.begin(), v.end(), i + 1) - v.begin();
-                mx = max(mx, ans);
+                auto LB = green_pos.lower_bound(i + 1);
+                int diff = (*LB - (i + 1));
+                ans = max(ans, diff);
             }
         }
 
-        cout << mx << endl;
+        cout << ans << endl;
     }
 
     return 0;
