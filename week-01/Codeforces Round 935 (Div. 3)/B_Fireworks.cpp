@@ -23,7 +23,7 @@ int main() {
         cin >> a >> b >> m;
 
 
-        cout << (a + m) * (b / m) << endl;
+        cout << (a + m) / a + (b + m) / b << endl;
     }
 
 

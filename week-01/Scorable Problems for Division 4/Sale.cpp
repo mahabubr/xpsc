@@ -10,6 +10,43 @@
 
 using namespace std;
 
+void solve() {
+    ll n;
+    cin >> n;
+
+    vector<ll> arr(n);
+
+    for (ll i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    ll pref = 0;
+    ll ans = S_INF;
+
+    for (ll i = 0; i < n; i++) {
+        ll mx = pref + 2 * arr[i];
+        ans = max(ans, mx);
+        pref += arr[i];
+        // cout << pref + 2 * arr[i] << " ";
+    }
+
+    // ll pref[n + 1] = { 0 };
+
+    // for (int i = 1; i <= n; i++) {
+    //     pref[i] = pref[i - 1] + arr[i - 1];
+    // }
+
+    // ll mx = S_INF;
+
+    // for (int i = 0; i <= n; i++) {
+    //     mx = max(mx, pref[i] + 2 * arr[i]);
+    // }
+
+
+    cout << ans << endl;
+    // cout << mx << endl;
+}
+
 int main() {
 
     ios::sync_with_stdio(false);
@@ -19,35 +56,7 @@ int main() {
     cin >> t;
 
     while (t--) {
-        ll n;
-        cin >> n;
-
-        vector<ll> arr(n);
-
-        ll mx = S_INF;
-        ll mxVal = 0;
-
-        for (ll i = 0; i < n; i++) {
-            cin >> arr[i];
-            if (arr[i] > mx) {
-                mx = arr[i];
-                mxVal = i;
-            }
-        }
-
-        ll sum = 0;
-
-        for (ll i = 0; i < n; i++) {
-            if (i == mxVal) {
-                sum += arr[i] + arr[i];
-                break;
-            }
-            sum += arr[i];
-        }
-
-        cout << sum << endl;
-
-
+        solve();
     }
 
     return 0;
