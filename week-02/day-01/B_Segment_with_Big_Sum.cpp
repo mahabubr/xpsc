@@ -29,18 +29,24 @@ int main() {
     while (r < n) {
         sum += arr[r];
 
-        if (sum <= s) {
-            ans = min(ans, r - l + 1);
-        }
-        else {
+        while (sum - arr[l] >= s) {
             sum -= arr[l];
             l++;
+        }
+
+        if (sum >= s) {
+            ans = min(ans, r - l + 1);
         }
 
         r++;
     }
 
-    cout << ans << endl;
+    if (ans == B_INF) {
+        cout << -1 << endl;
+    }
+    else {
+        cout << ans << endl;
+    }
 
     return 0;
 }
