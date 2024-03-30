@@ -28,30 +28,23 @@ void solve() {
 
     vector<int> v;
 
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n; i++) {
         bool found = false;
 
-        for (int j = i + 1; j < n; j++) {
-            string conS = arr[i] + arr[j];
-            if (st.find(conS) != st.end()) {
+        for (int j = 0; j < arr[i].size(); j++) {
+            string s1 = arr[i].substr(0, j);
+            string s2 = arr[i].substr(j);
+
+            if(st.count(s1) && st.count(s2)){
                 found = true;
                 break;
             }
         }
-        if (found) {
-            v.push_back(1);
-        }
-        else {
-            v.push_back(0);
-        }
+        cout << found ;
     }
-
-    for (int n : v) {
-        cout << n << " ";
-    }
-
 
     cout << endl;
+
 }
 
 int main() {
