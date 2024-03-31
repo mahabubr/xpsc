@@ -6,7 +6,7 @@
     cout.tie(0);
 #define ll long long int
 #define dl double
-#define pi pair<int, int>
+#define pi pair<ll, ll>
 #define m_inf LLONG_MAX
 #define s_inf LLONG_MIN
 #define vi vector<int>
@@ -41,48 +41,46 @@ using namespace std;
 
 void infinite() {
     // write code
-    int n;
+    ll n;
     cin >> n;
 
-    int arr[n][n - 1];
+    string s;
+    cin >> s;
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n - 1; j++) {
-            cin >> arr[i][j];
+    vector<ll> cur;
+    vector<pi> next;
+
+    ll sum = 0;
+
+    for (ll i = 0; i < n; i++) {
+        if (s[i] == 'R') {
+            cur.push_back(n - 1 - i);
+            next.push_back({ i, i });
+
         }
-    }
-
-    vi v;
-
-    map<int, int> mp;
-
-    for (int i = 0; i < n; i++) {
-        mp[arr[i][n - 2]]++;
-    }
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n - 1; j++) {
-            if (mp.find(arr[i][n - 2])->second == 1) {
-                cout << arr[i][j] << " ";
-            }
+        else {
+            cur.push_back(i);
+            next.push_back({ n - 1 - i, i });
         }
+
+        sum += cur.back();
     }
 
-    for (auto& it : mp) {
-        if (it.second > 1) {
-            cout << it.first << " ";
-        }
-    }
+    sort(next.begin(), next.end(), greater<pi>());
 
+    for (ll i = 0; i < n; i++) {
+
+    }
 
     cout << endl;
+
 }
 
 int main() {
 
     NOT_FOUND();
 
-    int t;
+    ll t;
     cin >> t;
 
     while (t--) {
