@@ -69,7 +69,11 @@ void infinite() {
     sort(next.begin(), next.end(), greater<pi>());
 
     for (ll i = 0; i < n; i++) {
+        if (cur[next[i].second] < next[i].first) {
+            sum = sum - cur[next[i].second] + next[i].first;
+        }
 
+        cout << sum << " ";
     }
 
     cout << endl;
