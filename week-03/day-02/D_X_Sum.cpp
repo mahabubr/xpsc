@@ -22,36 +22,36 @@ void solve() {
         }
     }
 
-    int mx = INT_MIN;
+    int mx = INT_MIN, sum;
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
 
-            int sum = 0;
+            sum = 0;
 
             int ci = i, cj = j;
-            while (ci >= 0 && ci < n && cj >= 0 && cj < m) {
+            while (ci < n && cj < m) {
                 sum += arr[ci][cj];
                 ci++;
                 cj++;
             }
 
             ci = i, cj = j;
-            while (ci >= 0 && ci < n && cj >= 0 && cj < m) {
+            while (ci >= 0 && cj >= 0) {
                 sum += arr[ci][cj];
                 ci--;
                 cj--;
             }
 
             ci = i, cj = j;
-            while (ci >= 0 && ci < n && cj >= 0 && cj < m) {
+            while (ci < n && cj >= 0) {
                 sum += arr[ci][cj];
                 ci++;
                 cj--;
             }
 
             ci = i, cj = j;
-            while (ci >= 0 && ci < n && cj >= 0 && cj < m) {
+            while (ci >= 0 && cj < m) {
                 sum += arr[ci][cj];
                 ci--;
                 cj++;
