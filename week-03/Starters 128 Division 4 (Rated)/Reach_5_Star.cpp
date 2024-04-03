@@ -41,45 +41,22 @@ using namespace std;
 
 void infinite() {
     // write code
-    int n;
-    cin >> n;
+    int x, y;
+    cin >> x >> y;
 
-    vi arr(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+    if (x + y >= 2000) {
+        yes;
     }
-
-    arr.erase(remove(arr.begin(), arr.end(), 0), arr.end());
-
-    int ans = 0;
-
-    for (int i = 1; i < arr.size() - 1; i++) {
-
-        if (arr[i] < 0) {
-            ans++;
-        }
-        else {
-            ans = 0;
-        }
-
-        
-
+    else {
+        no;
     }
-
-    cout << endl << endl;
 }
 
 int main() {
 
     NOT_FOUND();
 
-    int t;
-    cin >> t;
-
-    while (t--) {
-        infinite();
-    }
+    infinite();
 
     return 0;
 }
