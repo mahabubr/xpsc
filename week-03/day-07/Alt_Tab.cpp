@@ -59,8 +59,7 @@ void infinite() {
 
     for (int i = n - 1; i >= 0; i--) {
         if (ms.find(arr[i]) == ms.end()) {
-            str += arr[i][arr[i].length() - 2];
-            str += arr[i][arr[i].length() - 1];
+            str += arr[i].substr(arr[i].size() - 2);
             ms[arr[i]] = i;
         }
     }
