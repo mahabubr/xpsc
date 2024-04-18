@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.html": "html",
+    "version": "cpp",
+    "random": "cpp"
+  }
+}
