@@ -66,78 +66,57 @@ template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree
 // ██║░╚═╝░██║██║░░██║██║░░██║██║░░██║██████╦╝╚██████╔╝██████╦╝  // 
 // ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░░╚═════╝░╚═════╝░  // 
 
-int even_sum_longest_sub_array(vi arr, int n)
-{
-    int ans = 0;
-
-    int i = 0;
-
-    while (i < n) {
-        int len = 0;
-        int j = i;
-
-        while (j < n) {
-            len++;
-
-            int sum = 0;
-
-            for (int k = i;k <= j;k++) {
-                sum += arr[k];
-            }
-
-            if (sum % 2 == 0) {
-                ans = max(ans, len);
-            }
-            j++;
-        }
-
-        i++;
-    }
-
-    return ans;
-}
-
-string LCS(string& str1, string& str2) {
-    if (str1.empty() || str2.empty()) {
-        return "";
-    }
-
-    int n = str1.size();
-    int m = str2.size();
-
-    vector<vi> dp(n + 1, vi(m + 1, 0));
-    int max_len = 0, end_index = 0;
-
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-            if (str1[i - 1] == str2[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1] + 1;
-                if (dp[i][j] > max_len) {
-                    max_len = dp[i][j];
-                    end_index = i - 1;
-                }
-            }
+bool is_valid(string s) {
+    for (auto c : s) {
+        if (!(islower(c) || isdigit(c))) {
+            return false;
         }
     }
 
-    return str1.substr(end_index - max_len + 1, max_len);
-}
+    vector<char> letters;
+    vector<int> digits;
 
+    // Separate letters and digits into vectors.
+    for (char c : s) {
+        if (isalpha(c)) {
+            letters.push_back(c);
+        }
+        else {
+            digits.push_back(c - '0');
+        }
+    }
+
+    if (!digits.empty() && !is_sorted(all(digits))) {
+        return false;
+    }
+
+    if (!letters.empty() && !is_sorted(all(letters))) {
+        return false;
+    }
+
+    rep(i, 0, sz(s) - 1) {
+        if (isalpha(s[i]) && isdigit(s[i + 1])) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 void InFiNiTe() {
     // write code
     int n;
     cin >> n;
 
-    vi arr(n);
+    string s;
+    cin >> s;
 
-    rep(i, 0, n - 1) {
-        cin >> arr[i];
+    if (is_valid(s)) {
+        yes;
     }
-
-    int ans = even_sum_longest_sub_array(arr, n);
-
-    cout << ans << ln;
+    else {
+        no;
+    }
 }
 
 int main() {

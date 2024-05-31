@@ -66,78 +66,20 @@ template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree
 // ██║░╚═╝░██║██║░░██║██║░░██║██║░░██║██████╦╝╚██████╔╝██████╦╝  // 
 // ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░░╚═════╝░╚═════╝░  // 
 
-int even_sum_longest_sub_array(vi arr, int n)
-{
-    int ans = 0;
-
-    int i = 0;
-
-    while (i < n) {
-        int len = 0;
-        int j = i;
-
-        while (j < n) {
-            len++;
-
-            int sum = 0;
-
-            for (int k = i;k <= j;k++) {
-                sum += arr[k];
-            }
-
-            if (sum % 2 == 0) {
-                ans = max(ans, len);
-            }
-            j++;
-        }
-
-        i++;
-    }
-
-    return ans;
-}
-
-string LCS(string& str1, string& str2) {
-    if (str1.empty() || str2.empty()) {
-        return "";
-    }
-
-    int n = str1.size();
-    int m = str2.size();
-
-    vector<vi> dp(n + 1, vi(m + 1, 0));
-    int max_len = 0, end_index = 0;
-
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-            if (str1[i - 1] == str2[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1] + 1;
-                if (dp[i][j] > max_len) {
-                    max_len = dp[i][j];
-                    end_index = i - 1;
-                }
-            }
-        }
-    }
-
-    return str1.substr(end_index - max_len + 1, max_len);
-}
-
 
 void InFiNiTe() {
     // write code
-    int n;
-    cin >> n;
+    ll n, m;
+    cin >> n >> m;
 
-    vi arr(n);
 
-    rep(i, 0, n - 1) {
-        cin >> arr[i];
+    ll ans = 0;
+    for (ll i = max(0LL, n - m); i <= n + m; i++) {
+        ans |= i;
     }
 
-    int ans = even_sum_longest_sub_array(arr, n);
-
     cout << ans << ln;
+
 }
 
 int main() {
