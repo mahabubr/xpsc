@@ -69,8 +69,8 @@ template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree
 
 void InFiNiTe() {
     // write code
-    int n, c, d;
-    cin >> n >> c >> d;
+    ll n;
+    cin >> n;
 
     vi arr(n);
 
@@ -78,10 +78,37 @@ void InFiNiTe() {
         cin >> arr[i];
     }
 
-    int l = 0, r = n - 1, ans = 0;
+    multiset<ll> ml;
+    ll sum = 0;
 
-    while (l <= r) {
-        int mid = (l + r) / 2;
+    rep(i, 0, n - 1) {
+        sum += arr[i];
+        ml.insert(arr[i]);
+    }
+
+    priority_queue<ll> pq;
+    pq.push(sum);
+
+    while (!pq.empty()) {
+        ll x = pq.top();
+        pq.pop();
+
+        if (*ml.rbegin() <= x) {
+            if (ml.find(x) == ml.end()) {
+                pq.push(x / 2);
+                pq.push((x + 1) / 2);
+            }
+            else {
+                ml.erase(ml.find(x));
+            }
+        }
+    }
+
+    if (ml.empty()) {
+        yes;
+    }
+    else {
+        no;
     }
 }
 
